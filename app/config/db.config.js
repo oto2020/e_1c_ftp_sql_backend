@@ -6,7 +6,9 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.host,
   dialect: env.dialect,
-  operatorsAliases: false,
+  operatorsAliases: 0,
+  dialectOptions: env.dialectOptions,
+  timezone: env.timezone,
 });
 
 const db = {};

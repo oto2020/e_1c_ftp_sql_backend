@@ -1,7 +1,11 @@
+
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
+
+
 
 // include database config file
 const db = require("./app/config/db.config.js");
@@ -12,9 +16,9 @@ const { Sequelize, sequelize } = require("./app/config/db.config.js");
 //   console.log("Drop and Resync with { force: true }");
 // });
 
-// вызываем наполнение БД данными
-// require("./app/seeder/sale.seeder")(db);
-require("./app/seeder/service.seeder")(db);
+// // вызываем наполнение БД данными
+// require("./app/seeder/sale.seeder")('ftp.sales.day (TXT).txt');
+// require("./app/seeder/service.seeder")('ftp.services.day (TXT).txt');
 
 // include application routes
 require("./app/route/book.route.js")(app);

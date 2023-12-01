@@ -1,6 +1,10 @@
 const fs = require('fs');
+const path = require('path');
 // Преобразует текстовый документ в двумерный массив, а после в массив объектов с конвертацией в число для числовых полей
-module.exports.getArrObj = (fileName) => {
+module.exports.extractObjects = (fileName) => {
+
+    if(!fs.existsSync(fileName)) return [];
+
     // читаем наш текстовик
     let bigString = fs.readFileSync(fileName).toString();
     // строки
@@ -24,5 +28,23 @@ module.exports.getArrObj = (fileName) => {
         obj = Object.assign({}, obj);
         arrObj.push(obj);
     }
+
+    process.env.TZ = 'Europe/Moscow';
+    let date = new Date();
+    let yyyy = date.getFullYear();
+    let m = date.getMonth()+1;
+    let d = date.getDay();
+    let h = date.getHours();
+    let M = date.getMinutes();
+    let s = date.getSeconds();
+    let newFileName = `${yyyy}-${m}-${d} ${h}-${M}-${s} ${fileName}`;
+
+    let oldPath = path.join(__dirname, '..', '..', fileName);//.replace(/(\s)/, "\\ ");;
+    let newPath = path.join(__dirname, '..', '..', 'archive', newFileName);//.replace(/(\s)/, "\\ ");;
+
+    console.log(oldPath, newPath);
+    fs.renameSync(oldPath, newPath);
+    console.log(`${fileName} перенесён в архив`);
+
     return arrObj;
 }

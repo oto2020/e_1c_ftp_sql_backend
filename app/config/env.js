@@ -1,4 +1,4 @@
-const timezone = 'UTC+3'
+const timezone = 'Europe/Moscow'
 process.env.TZ = timezone
 
 const env = {
