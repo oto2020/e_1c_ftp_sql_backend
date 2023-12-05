@@ -1,5 +1,4 @@
-const timezone = 'Europe/Moscow'
-process.env.TZ = timezone
+process.env.TZ = 'Europe/Moscow';
 
 const env = {
     database: "fitness1c",
@@ -7,10 +6,10 @@ const env = {
     password: "root",
     host: "localhost",
     dialect: "mysql",
-    dialectOptions: {
-      useUTC: false, // for reading from database
-    },
-    timezone: timezone, // for writing to database
+    // dialectOptions: {
+    //   useUTC: 0, // for reading from database
+    // },
+    timezone: '+03:00', // for writing to database
   };
   
   module.exports = env;

@@ -23,13 +23,12 @@ module.exports.extractObjects = (fileName) => {
             let fieldName = arr2[0][j]; // нулевая строка
             // если это число
             obj[fieldName] = (fieldName.includes('price') || fieldName.includes('count') || fieldName.includes('number')) ?
-            parseFloat(arr2[i][j]) || 0 : arr2[i][j];
+            parseFloat(arr2[i][j].replace(/\s+/g, '')) || 0 : arr2[i][j];
         }
         obj = Object.assign({}, obj);
         arrObj.push(obj);
     }
 
-    process.env.TZ = 'Europe/Moscow';
     let date = new Date();
     let yyyy = date.getFullYear();
     let m = date.getMonth()+1;
@@ -42,9 +41,9 @@ module.exports.extractObjects = (fileName) => {
     let oldPath = path.join(__dirname, '..', '..', fileName);//.replace(/(\s)/, "\\ ");;
     let newPath = path.join(__dirname, '..', '..', 'archive', newFileName);//.replace(/(\s)/, "\\ ");;
 
-    console.log(oldPath, newPath);
+    // console.log(oldPath, newPath);
     fs.renameSync(oldPath, newPath);
-    console.log(`${fileName} перенесён в архив`);
+    // console.log(`${fileName} перенесён в архив`);
 
     return arrObj;
 }

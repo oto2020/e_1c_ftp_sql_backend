@@ -9,6 +9,7 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
   operatorsAliases: 0,
   dialectOptions: env.dialectOptions,
   timezone: env.timezone,
+  logging: false,
 });
 
 const db = {};
