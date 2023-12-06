@@ -20,6 +20,8 @@ const { Sequelize, sequelize } = require("./app/config/db.config.js");
 // require("./app/seeder/sale.seeder")('ftp.sales.day (TXT).txt');
 // require("./app/seeder/service.seeder")('ftp.services.day (TXT).txt');
 
+
+
 // include application routes
 require("./app/route/book.route.js")(app);
 
